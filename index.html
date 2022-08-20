@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+
+  <title>Cloudflare Pages | Form Demo</title>
+  <meta name="theme-color" content="#d86300">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="https://www.cloudflare.com/favicon-128.png">
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/bootstrap.js"></script>
+
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap-maxlength.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/particles.min.js"></script>
+
+  <div id="particles-js"></div>
+  <script src="js/index.js"></script>
+
+  <link rel="stylesheet" href="css/dropify.min.css">
+  <script src="js/dropify.min.js"></script>
+
+</head>
+<body>
+
+<main>
+  <h1>Hello World</h1>
+
+  <blockquote>
+    <p>ポリス通報フォーム説明云々TODO</p>
+  </blockquote>
+
+  <!--  <form class="form-horizontal" name="tuuhou" method="post">-->
+  <!--    <div class="input">-->
+  <!--      <label for="name">名前 (任意)</label>-->
+  <!--      <input id="name" name="entry.190708008" type="text" placeholder="任意"/>-->
+  <!--    </div>-->
+
+  <!--    <div class="input">-->
+  <!--      <label for="category">通報したい内容を選択してください</label>-->
+  <!--      <select id="category" name="entry.355870254" required>-->
+  <!--        <option hidden disabled selected value></option>-->
+  <!--        <option value="不快, 非常識な言動">不快, 非常識な言動</option>-->
+  <!--        <option value="スパム, 勧誘, 宣伝などの迷惑行為">スパム, 勧誘, 宣伝などの迷惑行為</option>-->
+  <!--        <option value="個人や特定の集団への攻撃">個人や特定の集団への攻撃</option>-->
+  <!--        <option value="ユーザー間でのトラブル">ユーザー間でのトラブル</option>-->
+  <!--        <option value="ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)">ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)</option>-->
+  <!--        <option value="ポリスへ質問">ポリスへ質問</option>-->
+  <!--        <option value="__other_option__">その他</option>-->
+  <!--      </select>-->
+  <!--    </div>-->
+  <!--    <div class="input">-->
+  <!--      <div class="collapse" id="other-category-collapse">-->
+  <!--        <label for="other-category">通報したい内容を記入してください</label>-->
+  <!--        <input id="other-category" name="entry.355870254.other_option_response" type="text" placeholder="〇〇の為など"/>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <!--    <div class="input">-->
+  <!--      <label>-->
+  <!--        日付 (任意)-->
+  <!--        <input type="date" name="date">-->
+  <!--      </label>-->
+  <!--      <label>-->
+  <!--        時刻 (任意)-->
+  <!--        <input type="time" name="time">-->
+  <!--      </label>-->
+  <!--    </div>-->
+
+  <!--      <div class="input">-->
+  <!--        <label for="details">通報したい内容を記入してください</label>-->
+  <!--        <textarea id="details" name="entry.745399878" type="text" placeholder="〇〇の為など" rows="7" style="width: 100%;height: 100%;"></textarea>-->
+  <!--      </div>-->
+
+  <!--      <div id="dragDropArea">-->
+  <!--        <div class="drag-drop-inside">-->
+  <!--          <p class="drag-drop-info">ここにファイルをドロップ</p>-->
+  <!--          <p>または</p>-->
+  <!--          <p class="drag-drop-buttons">-->
+  <!--            <input id="fileInput" type="file" accept="image/*" value="ファイルを選択" name="photo" onChange="photoPreview(event)">-->
+  <!--          </p>-->
+  <!--          <div id="previewArea"></div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+
+  <!--    <button type="submit" onclick="onSubmit()" class="submit-btn">Submit</button>-->
+  <!--  </form>-->
+  <form class="row g-4 form-horizontal" name="tuuhou">
+    <div class="col-md-12">
+      <label for="username" class="form-label">名前(任意)</label>
+      <input type="text" class="form-control" id="username">
+    </div>
+
+    <div class="col-12">
+      <label for="category" class="form-label">通報したい内容を選択してください</label>
+      <select class="form-select" id="category" name="entry.355870254" required>
+        <option hidden disabled selected value></option>
+        <option value="不快, 非常識な言動">不快, 非常識な言動</option>
+        <option value="スパム, 勧誘, 宣伝などの迷惑行為">スパム, 勧誘, 宣伝などの迷惑行為</option>
+        <option value="個人や特定の集団への攻撃">個人や特定の集団への攻撃</option>
+        <option value="ユーザー間でのトラブル">ユーザー間でのトラブル</option>
+        <option value="ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)">ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)</option>
+        <option value="ポリスへ質問">ポリスへ質問</option>
+        <option value="__other_option__">その他</option>
+      </select>
+
+    </div>
+    <div class="col-12" id="other-category-div" >
+      <div class="collapse" id="other-category-collapse">
+        <label for="other-category" class="form-label">通報したい内容を記入してください</label>
+        <input class="form-control" id="other-category" name="entry.355870254.other_option_response" type="text" placeholder="〇〇の為など"/>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <label class="form-label">
+        日時 (任意)
+        <input class="form-control" type="datetime-local" name="date">
+      </label>
+    </div>
+
+    <div class="col-12">
+      <label for="details" class="form-label">通報したい内容を記入してください</label>
+      <textarea class="form-control" id="details" name="entry.745399878" type="text" placeholder="〇〇の為など" rows="4"></textarea>
+    </div>
+
+    <div class="col-12">
+      <label for="details" class="form-label">参考画像などがあればアップロードしてください(gif png jpg のみ)</label>
+      <input id="file" name="file" type="file" class="dropify" data-allowed-file-extensions="gif png jpg jpeg" accept="image/*">
+    </div>
+
+
+    <div class="col-12">
+      <button type="submit" onclick="onSubmit()" class="submit-btn">Submit</button>
+    </div>
+  </form>
+</main>
+
+</body>
+<footer>
+  <script type="application/javascript">
+    $('.dropify').dropify({
+      messages: {
+        'default': '',
+        'replace': 'ファイルを入れ替える',
+        'remove':  '削除',
+        'error':   'ファイルの読み込みに失敗しました'
+      }
+    });
+    let select = document.querySelector('[name="entry.355870254"]');
+    let otherCategoryForm = document.getElementById('other-category');
+    let otherCategoryDiv = document.getElementById('other-category-div');
+
+    function onSubmit() {
+      // const formElements = document.tuuhou;
+      // let formName = formElements.name.value,
+      //         formCategory = formElements.category.value,
+      //         formOtherCategory = formElements.otherCategory.value,
+      //         formDate  = formElements.date.value,
+      //         formTime  = formElements.time.value,
+      //         formDetails = formElements.details.value;
+      //
+      // console.log(formName)
+      // console.log(formCategory)
+      // console.log(formOtherCategory)
+      // console.log(formDate)
+      // console.log(formTime)
+      // console.log(formDetails)
+
+      document.tuuhou.action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeEiCrEQdGnS9aRghvxHfgVlHvU3lBT2g6mAz2BvIKHhtmtPg/formResponse";
+      document.tuuhou.method="post";
+      document.tuuhou.submit();
+    }
+
+    select.onchange = event => {
+      const isOther = select.length -1 === select.selectedIndex;
+      if (isOther) {
+        otherCategoryDiv.display = "block";
+        otherCategoryForm.required = true;
+        $("#other-category-collapse").collapse('show');
+      } else {
+        otherCategoryDiv.display = "none";
+        otherCategoryForm.required = false;
+        $("#other-category-collapse").collapse('hide');
+      }
+    }
+
+
+  </script>
+</footer>
+</html>
