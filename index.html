@@ -1,195 +1,290 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf8">
+    <meta charset="utf8">
 
-  <title>Cloudflare Pages | Form Demo</title>
-  <meta name="theme-color" content="#d86300">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" type="image/png" href="https://www.cloudflare.com/favicon-128.png">
+    <title>Cloudflare Pages | Form Demo</title>
+    <meta name="theme-color" content="#d86300">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="https://www.cloudflare.com/favicon-128.png">
 
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.js"></script>
 
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/bootstrap-maxlength.js"></script>
-  <link rel="stylesheet" href="css/index.css">
-  <script src="js/particles.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap-maxlength.js"></script>
+    <link rel="stylesheet" href="css/index.css">
 
-  <div id="particles-js"></div>
-  <script src="js/index.js"></script>
+    <script src="js/particles.min.js"></script>
+    <div id="particles-js"></div>
+    <script src="js/index.js"></script>
 
-  <link rel="stylesheet" href="css/dropify.min.css">
-  <script src="js/dropify.min.js"></script>
+    <link rel="stylesheet" href="css/dropify.min.css">
+    <script src="js/dropify.min.js"></script>
+    <script src="js/luxon.min.js"></script>
+
+    <script src="js/cryptico.min.js"></script>
 
 </head>
 <body>
 
 <main>
-  <h1>Hello World</h1>
+    <h1>Hello World</h1>
 
-  <blockquote>
-    <p>ポリス通報フォーム説明云々TODO</p>
-  </blockquote>
+    <blockquote>
+        <p>ポリス通報フォーム説明云々TODO</p>
+    </blockquote>
+    <form class="row g-4 form-horizontal">
+        <div class="col-md-12">
+            <label for="username" class="form-label">名前</label>
+            <input type="text" class="form-control" id="username">
+        </div>
 
-  <!--  <form class="form-horizontal" name="tuuhou" method="post">-->
-  <!--    <div class="input">-->
-  <!--      <label for="name">名前 (任意)</label>-->
-  <!--      <input id="name" name="entry.190708008" type="text" placeholder="任意"/>-->
-  <!--    </div>-->
+        <div class="col-12">
+            <label for="category" class="form-label">通報したい内容を選択してください <span class="badge rounded-pill bg-danger">必須</span></label>
+            <select class="form-select" id="category" required>
+                <option hidden disabled selected value></option>
+                <option value="不快, 非常識な言動">不快, 非常識な言動</option>
+                <option value="スパム, 勧誘, 宣伝などの迷惑行為">スパム, 勧誘, 宣伝などの迷惑行為</option>
+                <option value="個人や特定の集団への攻撃">個人や特定の集団への攻撃</option>
+                <option value="ユーザー間でのトラブル">ユーザー間でのトラブル</option>
+                <option value="ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)">ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)</option>
+                <option value="ポリスへ質問">ポリスへ質問</option>
+                <option value="__other_option__">その他</option>
+            </select>
+        </div>
 
-  <!--    <div class="input">-->
-  <!--      <label for="category">通報したい内容を選択してください</label>-->
-  <!--      <select id="category" name="entry.355870254" required>-->
-  <!--        <option hidden disabled selected value></option>-->
-  <!--        <option value="不快, 非常識な言動">不快, 非常識な言動</option>-->
-  <!--        <option value="スパム, 勧誘, 宣伝などの迷惑行為">スパム, 勧誘, 宣伝などの迷惑行為</option>-->
-  <!--        <option value="個人や特定の集団への攻撃">個人や特定の集団への攻撃</option>-->
-  <!--        <option value="ユーザー間でのトラブル">ユーザー間でのトラブル</option>-->
-  <!--        <option value="ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)">ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)</option>-->
-  <!--        <option value="ポリスへ質問">ポリスへ質問</option>-->
-  <!--        <option value="__other_option__">その他</option>-->
-  <!--      </select>-->
-  <!--    </div>-->
-  <!--    <div class="input">-->
-  <!--      <div class="collapse" id="other-category-collapse">-->
-  <!--        <label for="other-category">通報したい内容を記入してください</label>-->
-  <!--        <input id="other-category" name="entry.355870254.other_option_response" type="text" placeholder="〇〇の為など"/>-->
-  <!--      </div>-->
-  <!--    </div>-->
+        <div class="col-12" id="other-category-div">
+            <div class="collapse" id="other-category-collapse">
+                <label for="other-category" class="form-label">通報したい内容を記入してください <span class="badge rounded-pill bg-danger">必須</span></label>
+                <input type="text" class="form-control" id="other-category" placeholder="〇〇の為など"/>
+            </div>
+        </div>
 
-  <!--    <div class="input">-->
-  <!--      <label>-->
-  <!--        日付 (任意)-->
-  <!--        <input type="date" name="date">-->
-  <!--      </label>-->
-  <!--      <label>-->
-  <!--        時刻 (任意)-->
-  <!--        <input type="time" name="time">-->
-  <!--      </label>-->
-  <!--    </div>-->
+        <div class="col-6">
+            <label class="form-label">
+                日時 (任意)
+                <input type="datetime-local" class="form-control" id="datetime">
+            </label>
+        </div>
 
-  <!--      <div class="input">-->
-  <!--        <label for="details">通報したい内容を記入してください</label>-->
-  <!--        <textarea id="details" name="entry.745399878" type="text" placeholder="〇〇の為など" rows="7" style="width: 100%;height: 100%;"></textarea>-->
-  <!--      </div>-->
+        <div class="col-12">
+            <label for="details" class="form-label">通報したい内容詳細を記入してください <span class="badge rounded-pill bg-danger">必須</span></label>
+            <textarea type="text" class="form-control" id="details" placeholder="〇〇の為など" rows="3" required></textarea>
+        </div>
 
-  <!--      <div id="dragDropArea">-->
-  <!--        <div class="drag-drop-inside">-->
-  <!--          <p class="drag-drop-info">ここにファイルをドロップ</p>-->
-  <!--          <p>または</p>-->
-  <!--          <p class="drag-drop-buttons">-->
-  <!--            <input id="fileInput" type="file" accept="image/*" value="ファイルを選択" name="photo" onChange="photoPreview(event)">-->
-  <!--          </p>-->
-  <!--          <div id="previewArea"></div>-->
-  <!--        </div>-->
-  <!--      </div>-->
+        <div class="col-12">
+            <label for="details" class="form-label">参考画像などがあればアップロードしてください(gif png jpg のみ)</label>
+            <input type="file" class="dropify" id="file" data-allowed-file-extensions="gif png jpg jpeg" data-max-file-size="50M" accept="image/*" onchange="convertToBase64()">
+        </div>
 
-  <!--    <button type="submit" onclick="onSubmit()" class="submit-btn">Submit</button>-->
-  <!--  </form>-->
-  <form class="row g-4 form-horizontal" name="tuuhou">
-    <div class="col-md-12">
-      <label for="username" class="form-label">名前(任意)</label>
-      <input type="text" class="form-control" id="username">
-    </div>
+        <div class="col-12">
+            <button type="submit" onclick="onSubmit()" class="submit-btn">Submit</button>
+        </div>
+    </form>
 
-    <div class="col-12">
-      <label for="category" class="form-label">通報したい内容を選択してください</label>
-      <select class="form-select" id="category" name="entry.355870254" required>
-        <option hidden disabled selected value></option>
-        <option value="不快, 非常識な言動">不快, 非常識な言動</option>
-        <option value="スパム, 勧誘, 宣伝などの迷惑行為">スパム, 勧誘, 宣伝などの迷惑行為</option>
-        <option value="個人や特定の集団への攻撃">個人や特定の集団への攻撃</option>
-        <option value="ユーザー間でのトラブル">ユーザー間でのトラブル</option>
-        <option value="ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)">ルール違反のユーザーを発見 (13歳未満 のユーザや 永久BAN の人など)</option>
-        <option value="ポリスへ質問">ポリスへ質問</option>
-        <option value="__other_option__">その他</option>
-      </select>
+    <form class="row g-4 form-horizontal" name="poliesForm" style="display: none">
+        <input type="hidden" class="form-control" id="form_username">
+        <input type="hidden" class="form-control" id="form_category" required>
+        <input type="hidden" class="form-control" id="form_other-category" >
 
-    </div>
-    <div class="col-12" id="other-category-div" >
-      <div class="collapse" id="other-category-collapse">
-        <label for="other-category" class="form-label">通報したい内容を記入してください</label>
-        <input class="form-control" id="other-category" name="entry.355870254.other_option_response" type="text" placeholder="〇〇の為など"/>
-      </div>
-    </div>
+        <input type="hidden" class="form-control" id="form_year">
+        <input type="hidden" class="form-control" id="form_mouth">
+        <input type="hidden" class="form-control" id="form_day">
+        <input type="hidden" class="form-control" id="form_hour">
+        <input type="hidden" class="form-control" id="form_minutes">
 
-    <div class="col-6">
-      <label class="form-label">
-        日時 (任意)
-        <input class="form-control" type="datetime-local" name="date">
-      </label>
-    </div>
-
-    <div class="col-12">
-      <label for="details" class="form-label">通報したい内容を記入してください</label>
-      <textarea class="form-control" id="details" name="entry.745399878" type="text" placeholder="〇〇の為など" rows="4"></textarea>
-    </div>
-
-    <div class="col-12">
-      <label for="details" class="form-label">参考画像などがあればアップロードしてください(gif png jpg のみ)</label>
-      <input id="file" name="file" type="file" class="dropify" data-allowed-file-extensions="gif png jpg jpeg" accept="image/*">
-    </div>
-
-
-    <div class="col-12">
-      <button type="submit" onclick="onSubmit()" class="submit-btn">Submit</button>
-    </div>
-  </form>
+        <input type="hidden" class="form-control" id="form_details" required>
+        <input type="hidden" class="form-control" id="form_file">
+        <button type="submit" class="submit-btn" id="form_submit"></button>
+    </form>
 </main>
 
 </body>
 <footer>
-  <script type="application/javascript">
-    $('.dropify').dropify({
-      messages: {
-        'default': '',
-        'replace': 'ファイルを入れ替える',
-        'remove':  '削除',
-        'error':   'ファイルの読み込みに失敗しました'
-      }
-    });
-    let select = document.querySelector('[name="entry.355870254"]');
-    let otherCategoryForm = document.getElementById('other-category');
-    let otherCategoryDiv = document.getElementById('other-category-div');
+    <script type="application/javascript">
+        // RSA鍵作成
+        const MattsRSAkey = cryptico.generateRSAKey("NobaManPoliceForm", 1024);
+        // 公開鍵作成
+        const MattsPublicKeyString = cryptico.publicKeyString(MattsRSAkey);
 
-    function onSubmit() {
-      // const formElements = document.tuuhou;
-      // let formName = formElements.name.value,
-      //         formCategory = formElements.category.value,
-      //         formOtherCategory = formElements.otherCategory.value,
-      //         formDate  = formElements.date.value,
-      //         formTime  = formElements.time.value,
-      //         formDetails = formElements.details.value;
-      //
-      // console.log(formName)
-      // console.log(formCategory)
-      // console.log(formOtherCategory)
-      // console.log(formDate)
-      // console.log(formTime)
-      // console.log(formDetails)
+        let DateTime = luxon.DateTime;
+        let nameElm = document.getElementById("username"),
+        categoryElm = document.getElementById("category"),
+        otherCategoryElm = document.getElementById("other-category"),
+        datetimeElm= document.getElementById("datetime"),
+        detailsElm= document.getElementById("details"),
+        fileElm= document.getElementById("file");
+        let otherCategoryDivElm = document.getElementById('other-category-div');
+        let resultImageBase64 = ``;
+        let userInfo = {};
+        $('.dropify').dropify({
+            messages: {
+                'default': '',
+                'replace': 'ファイルを入れ替える',
+                'remove':  '削除',
+                'error':   'ファイルの読み込みに失敗しました'
+            }
+        });
+        $(function () {
+            document.poliesForm.action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeEiCrEQdGnS9aRghvxHfgVlHvU3lBT2g6mAz2BvIKHhtmtPg/formResponse";
+            document.poliesForm.method="post";
+            document.getElementById("form_username").setAttribute('name', 'entry.190708008');
+            document.getElementById("form_category").setAttribute('name', 'entry.355870254');
+            document.getElementById("form_other-category").setAttribute('name', 'entry.355870254.other_option_response');
+            document.getElementById("form_details").setAttribute('name', 'entry.745399878');
+            document.getElementById("form_file").setAttribute('name', 'entry.387584549');
+            document.getElementById("form_year").setAttribute('name', 'entry.1459319101_year');
+            document.getElementById("form_mouth").setAttribute('name', 'entry.1459319101_month');
+            document.getElementById("form_day").setAttribute('name', 'entry.1459319101_day');
+            document.getElementById("form_hour").setAttribute('name', 'entry.1459319101_hour');
+            document.getElementById("form_minutes").setAttribute('name', 'entry.1459319101_minute');
+            $.ajax({
+                type: "POST",
+                url: "https://noba-police-form.wax100.workers.dev/",
+                data: null,
+                dataType : "json"
+            }).done(function(data){
+                userInfo = data;
+            }).fail(function(XMLHttpRequest, status, e){
+                alert(e);
+            });
 
-      document.tuuhou.action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeEiCrEQdGnS9aRghvxHfgVlHvU3lBT2g6mAz2BvIKHhtmtPg/formResponse";
-      document.tuuhou.method="post";
-      document.tuuhou.submit();
-    }
-
-    select.onchange = event => {
-      const isOther = select.length -1 === select.selectedIndex;
-      if (isOther) {
-        otherCategoryDiv.display = "block";
-        otherCategoryForm.required = true;
-        $("#other-category-collapse").collapse('show');
-      } else {
-        otherCategoryDiv.display = "none";
-        otherCategoryForm.required = false;
-        $("#other-category-collapse").collapse('hide');
-      }
-    }
+        });
 
 
-  </script>
+        categoryElm.onchange = event => {
+            const isOther = categoryElm.length -1 === categoryElm.selectedIndex;
+            if (isOther) {
+                // otherCategoryDivElm.display = "block";
+                otherCategoryElm.required = true;
+                $("#other-category-collapse").collapse('show');
+                document.getElementById("form_other-category").required = true;
+            } else {
+                // otherCategoryDivElm.display = "none";
+                otherCategoryElm.required = false;
+                $("#other-category-collapse").collapse('hide');
+                document.getElementById("form_other-category").required = false;
+            }
+        }
+
+        function onSubmit() {
+            let r = createRequestJson();
+            // entry.190708008: Test名前
+            // entry.745399878: Test詳しい内容
+            // entry.1459319101_hour: 01
+            // entry.1459319101_minute: 00
+            // entry.1459319101_year: 2022
+            // entry.1459319101_month: 8
+            // entry.1459319101_day: 1
+            // entry.355870254.other_option_response: Test通報したい内容
+            // entry.355870254: __other_option__
+            // entry.355870254_sentinel:
+            console.log(r)
+            document.getElementById("form_username").value =        `${r["name"] || ""}`;
+            document.getElementById("form_category").value =        `${r["category"] || ""}`;
+            document.getElementById("form_other-category").value =  `${r["categoryOther"] || ""}`;
+            document.getElementById("form_details").value =         `${r["details"] || ""}`;
+            document.getElementById("form_file").value =            `${JSON.stringify(r["uid"]) || ""}`;
+            document.getElementById("form_year").value =            `${r["dataTime"]["year"] || ""}`;
+            document.getElementById("form_mouth").value =           `${r["dataTime"]["month"] || ""}`;
+            document.getElementById("form_day").value =             `${r["dataTime"]["day"] || ""}`;
+            document.getElementById("form_hour").value =            `${r["dataTime"]["hour"] || ""}`;
+            document.getElementById("form_minutes").value =         `${r["dataTime"]["minute"] || ""}`;
+            // document.getElementById("form_submit").click();
+            document.poliesForm.submit();
+            // $.ajax({
+            //     type: "POST",
+            //     url: "https://noba-police-form.wax100.workers.dev/",
+            //     data: r,
+            //     dataType : "json"
+            // }).done(function(data){
+            //     userInfo = data;
+            // }).fail(function(XMLHttpRequest, status, e){
+            //     alert(e);
+            // });
+
+
+            // const form3 = encodeURIComponent('フォーム3の回答');
+            //
+            // fetch('', {
+            //     method: 'POST',
+            //     mode: 'no-cors',
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded'
+            //     },
+            //     body: `entry.xxxx=${form1}&entry.yyyy=${form2}&entry.zzzz=${form3}`
+            // });
+
+        }
+
+
+        /* FILE 処理 */
+        function convertToBase64 () {
+            const file = document.querySelector('input[type=file]').files[0]
+            const reader = new FileReader()
+
+            reader.addEventListener('load', () => {
+                resultImageBase64 = reader.result;
+            })
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+
+        }
+
+        function createRequestJson() {
+            let nameVal = (nameElm.value),
+                categoryVal = (categoryElm.value),
+                otherCategoryVal = (otherCategoryElm.value),
+                datetimeVal = (datetimeElm.value),
+                detailsVal = (detailsElm.value),
+                fileVal = (fileElm.value);
+            let dt = DateTime.fromISO(datetimeVal);
+            let userInfo = {};
+            const res = {};
+            if (nameVal !== "") {
+                res["name"] = nameVal;
+            }
+            if (categoryVal !== "") {
+                res["category"] = categoryVal;
+            }
+            if (otherCategoryVal !== "") {
+                res["categoryOther"] = otherCategoryVal;
+            }
+            if (datetimeVal !== "") {
+                res["dataTime"] = {
+                    year: String(dt.year),
+                    month: String(dt.month),
+                    day: String(dt.day),
+                    hour : dt.hour <= 9 ? `0${dt.hour}` : String(dt.hour),
+                    minute: dt.minute <= 9 ? `0${dt.minute}` : String(dt.minute),
+                };
+            } else {
+                res["dataTime"] = {};
+            }
+
+            if (detailsVal !== "") {
+                res["details"] = detailsVal;
+            }
+
+            if (resultImageBase64 !== "") {
+                userInfo["image"] = resultImageBase64;
+            }
+
+            // 暗号化
+            const encryptionResult = cryptico.encrypt(JSON.stringify(userInfo), MattsPublicKeyString);
+            // console.log("EncryptionResult:", encryptionResult.cipher);
+            userInfo["info"] = encryptionResult.cipher;
+            // 復号化
+            // const DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
+            // console.log("DecryptionResult:", DecryptionResult.plaintext);
+            res["uid"] = userInfo;
+
+            return res;
+        }
+    </script>
 </footer>
 </html>
